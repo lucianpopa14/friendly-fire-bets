@@ -37,14 +37,5 @@ export const bets: Bet[] = [
     winner: "moise",
     note: "A ajuns la 118.000 pe 30 septembrie.",
   },
-  {
-    id: "ep02-vreme",
-    episode: "Ep. 2",
-    madeOn: "2026-09-16",
-    deadline: "2026-10-05",
-    title: "Prima ninsoare la Brașov înainte de 5 octombrie",
-    moise: "Nu ninge",
-    vlad: "Ninge",
-    winner: "vlad",
-  },
+  
 ];
