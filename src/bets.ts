@@ -6,6 +6,7 @@
 //                 și, opțional, `note` cu o explicație.
 // Datele sunt în format AAAA-LL-ZZ.
 //
+// ATENȚIE: pariurile de mai jos sunt EXEMPLE. Șterge-le și pune-le pe cele reale.
 // ──────────────────────────────────────────────────────────────
 
 export type Winner = "moise" | "vlad" | "draw";
@@ -45,7 +46,7 @@ export const bets: Bet[] = [
     moise: "Da, va fi nevoie de decret de retragere",
     vlad: "Nu, se va retrage de la sine",
     stakes: "O sticlă de vin",
-    winner: "",
+    winner: "draw",
     note: "Nu am găsit o decontare explicită în sursele publice.",
   },
   {
@@ -69,7 +70,7 @@ export const bets: Bet[] = [
     moise: "Sceptic – parlamentarii își fac calcule proprii și se tem de anticipate („Nu plecă bă nimeni, că nu e gară!”)",
     vlad: "Da, trece – motive obiective (rectificarea bugetară) și subiective",
     stakes: "O sticlă de vin",
-    winner: "",
+    winner: "draw",
     note: "Încă în curs la data de 20 octombrie 2026; PSD a decis să susțină un guvern „PSDan”. Dezbaterea de învestitură e iminentă.",
   },
   {
@@ -81,8 +82,8 @@ export const bets: Bet[] = [
     moise: "Deschis la scenariul anticipate",
     vlad: "Niciodată nu se vor organiza",
     stakes: "O sticlă de vin",
-    winner: "",
-    note: "Pariu „ongoing” menționut constant; anticipatele durează 4-5 luni pe Constituția actuală, termenul de 60 de zile nici n-a început să curgă.",
+    winner: "draw",
+    note: "Pariu „ongoing” menționut constant;",
   },
   
 ];
