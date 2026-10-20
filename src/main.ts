@@ -24,6 +24,7 @@ function daysUntil(iso: string): number {
 
 function stateOf(bet: Bet): State {
   if (bet.winner) return "done";
+  if(!bet.deadline) return "open";
   return daysUntil(bet.deadline) < 0 ? "pending" : "open";
 }
 
@@ -93,6 +94,7 @@ function statusText(bet: Bet): string {
     case "pending":
       return "Termen depășit, așteaptă verdictul";
     case "open": {
+      if (!bet.deadline) return "Fără termen, în desfășurare";
       const d = daysUntil(bet.deadline);
       if (d === 0) return "Se decide azi";
       if (d === 1) return "Se decide mâine";
@@ -122,23 +124,26 @@ function renderBet(bet: Bet): HTMLElement {
   if (bet.note) main.append(h("p", "note", bet.note));
 
   const aside = h("div", "bet-state");
-  aside.append(
-    h("span", "status", statusText(bet)),
-    h("span", "deadline", `Termen: ${dateFmt.format(parse(bet.deadline))}`),
-  );
+  aside.append(h("span", "status", statusText(bet)));
+  if (bet.deadline) {
+  aside.append(h("span", "deadline", `Termen: ${dateFmt.format(parse(bet.deadline))}`));
+  }
 
   li.append(main, aside);
   return li;
 }
 
 function sortBets(list: Bet[]): Bet[] {
-  // unresolved first (soonest deadline on top), then resolved (latest on top)
+  const when = (b: Bet) => parse(b.deadline || b.madeOn).getTime();
+  // unresolved first (soonest deadline on top, no-deadline last), then resolved (latest on top)
   return [...list].sort((a, b) => {
     const aDone = a.winner ? 1 : 0;
     const bDone = b.winner ? 1 : 0;
     if (aDone !== bDone) return aDone - bDone;
-    const diff = parse(a.deadline).getTime() - parse(b.deadline).getTime();
-    return aDone ? -diff : diff;
+    if (aDone) return when(b) - when(a);
+    const ad = a.deadline ? when(a) : Infinity;
+    const bd = b.deadline ? when(b) : Infinity;
+    return ad === bd ? 0 : ad < bd ? -1 : 1;
   });
 }
 

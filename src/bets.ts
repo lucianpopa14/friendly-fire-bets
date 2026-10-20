@@ -15,7 +15,7 @@ export interface Bet {
   id: string;
   episode: string; // ex. "Ep. 42"
   madeOn: string; // data episodului
-  deadline: string; // până când se decide pariul
+  deadline?: string; // până când se decide pariul
   title: string; // despre ce e pariul
   moise: string; // ce susține Moise
   vlad: string; // ce susține Vlad
@@ -70,8 +70,8 @@ export const bets: Bet[] = [
     moise: "Sceptic – parlamentarii își fac calcule proprii și se tem de anticipate („Nu plecă bă nimeni, că nu e gară!”)",
     vlad: "Da, trece – motive obiective (rectificarea bugetară) și subiective",
     stakes: "O sticlă de vin",
-    winner: "draw",
-    note: "Încă în curs la data de 20 octombrie 2026; PSD a decis să susțină un guvern „PSDan”. Dezbaterea de învestitură e iminentă.",
+    winner: "vlad",
+    note: "Guvernul „PSDan” a trecut",
   },
   {
     id: "anticipate",
@@ -82,7 +82,6 @@ export const bets: Bet[] = [
     moise: "Deschis la scenariul anticipate",
     vlad: "Niciodată nu se vor organiza",
     stakes: "O sticlă de vin",
-    winner: "draw",
     note: "Pariu „ongoing” menționut constant;",
   },
   
